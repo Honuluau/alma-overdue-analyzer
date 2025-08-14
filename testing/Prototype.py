@@ -54,8 +54,21 @@ def manual_entry_as_example(table, values, data):
     cur.executemany(f"INSERT INTO {table} ({values}) VALUES({placeholders})", data)
     con.commit()
 
+'''
 manual_entry_as_example("item_types","type, price",[
     ('Laptop', 1100),
     ('Book', 50),
     ('Laptop Adapter', 55)
 ])
+'''
+
+'''
+manual_entry_as_example("items","barcode, title, status, item_type_id",[
+    ([REDACTED], 'Sheila Rae, the brave', 'LOST', 2),
+    ([REDACTED], 'Computers and the world of the future.', 'LOST', 2),
+    ([REDACTED], 'Dell Latitude 5530 Laptop', 'LOST', 1),
+    ([REDACTED], 'Dell Latitude 5530 Laptop', 'LOST', 3),
+    ([REDACTED], 'Dell Latitude 5520 ; 16 GB ; 15.6" display', 'LOST', 1),
+    ([REDACTED], 'Dell Latitude 5520 ; 16 GB ; 15.6" display', 'LOST', 3)
+])
+'''
