@@ -7,11 +7,21 @@ def create_tables():
     cur.execute("PRAGMA foreign_keys = ON;")
 
     cur.execute("""
+        CREATE TABLE item_types(
+            item_type_id INTEGER PRIMARY KEY,
+            type VARCHAR(32),
+            price DECIMAL(5, 2)
+        )
+    """)
+
+    cur.execute("""
         CREATE TABLE items (
             item_id INTEGER PRIMARY KEY,
             barcode VARCHAR(32),
             title TEXT NOT NULL,
-            status TINYBLOB
+            status TINYBLOB,
+            item_type_id INTEGER,
+            FOREIGN KEY (item_type_id) REFERENCES item_types(item_type_id)
         )
     """)
 
