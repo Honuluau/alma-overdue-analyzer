@@ -16,8 +16,18 @@ cur.execute("""
 con.commit()
 '''
 
+'''
 res = cur.execute("SELECT score FROM movie")
 rows = res.fetchall()
 
 for row in rows:
     print(row)
+'''
+
+data = [
+    ("Monty Python Live at the Hollywood Bowl", 1982, 7.9),
+    ("Monty Python's The Meaning of Life", 1983, 7.5),
+    ("Monty Python's Life of Brian", 1979, 8.0),
+]
+cur.executemany("INSERT INTO movie VALUES(?, ?, ?)", data)
+con.commit()
