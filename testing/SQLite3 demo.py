@@ -6,6 +6,7 @@ cur = con.cursor()
 
 # cur.execute("CREATE TABLE movie(title, year, score)")
 
+'''
 cur.execute("""
     INSERT INTO movie VALUES
         ('Monty Python and the Holy Grail', 1975, 8.2),
@@ -13,3 +14,10 @@ cur.execute("""
 """)
 
 con.commit()
+'''
+
+res = cur.execute("SELECT score FROM movie")
+rows = res.fetchall()
+
+for row in rows:
+    print(row)
