@@ -24,6 +24,7 @@ for row in rows:
     print(row)
 '''
 
+'''
 data = [
     ("Monty Python Live at the Hollywood Bowl", 1982, 7.9),
     ("Monty Python's The Meaning of Life", 1983, 7.5),
@@ -31,3 +32,7 @@ data = [
 ]
 cur.executemany("INSERT INTO movie VALUES(?, ?, ?)", data)
 con.commit()
+'''
+
+for row in cur.execute("SELECT year, title FROM movie ORDER BY year"):
+    print(row)
