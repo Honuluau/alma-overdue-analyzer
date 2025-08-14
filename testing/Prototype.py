@@ -49,5 +49,13 @@ def create_tables():
         )
     """)
 
+def manual_entry_as_example(table, values, data):
+    placeholders = ",".join(["?"] * len(data[0]))
+    cur.executemany(f"INSERT INTO {table} ({values}) VALUES({placeholders})", data)
+    con.commit()
 
-create_tables()
+manual_entry_as_example("item_types","type, price",[
+    ('Laptop', 1100),
+    ('Book', 50),
+    ('Laptop Adapter', 55)
+])
