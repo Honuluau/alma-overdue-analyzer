@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter.filedialog import askopenfilename
 import datetime
+import os
+import webview
 
 def get_file_path():
     return askopenfilename(title="Select Fulfillment - Loans Returns and Overdue Dashboard", filetypes=[("Fulfillment Report", "*.xlsx")])
@@ -44,23 +46,6 @@ def get_last_update_time():
 def main():
     print("main lol")
 
-window = Tk()
-window.title("Alma Overdue Analyzer")
-
-menubar = Menu(window)
-window.config(menu=menubar)
-window.geometry("700x400")
-
-file_menu = Menu(menubar, tearoff=0)
-menubar.add_cascade(label="File", menu=file_menu)
-file_menu.add_command(label="Open", command=open_fulfillment)
-file_menu.add_command(label="FAKE UPDATE", command=fake_update_for_test)
-
-update_frame = Frame(window)
-update_frame.pack()
-
-update_time_label = Label(update_frame, justify=CENTER,text=f"Last updated: {get_last_update_time()}")
-update_time_label.pack()
-
-main()
-window.mainloop()
+file_path = os.path.abspath("web/index.html")
+webview.create_window("Alma Overdue Analyzer", file_path, width=700, height=400)
+webview.start()
