@@ -16,6 +16,9 @@ def log(log_type, message):
     except Exception as e:
         print(f"An error has occurred: {e}")
 
+def fake_ran_for_test():
+    log("RAN", "This is fake for a test.")
+
 def get_last_run_time():
     try:
         with open("log/log.txt") as f:
@@ -29,7 +32,8 @@ def get_last_run_time():
             f.close()
 
             if last_run_time is None:
-                log("ERROR", "Error code 2. None returned.")
+                log("ERROR", "Error code 2. None returned, using arbitrary date.")
+                return "2007-08-31 01:00:39"
 
             return last_run_time
 
@@ -50,6 +54,7 @@ window.geometry("700x400")
 file_menu = Menu(menubar, tearoff=0)
 menubar.add_cascade(label="File", menu=file_menu)
 file_menu.add_command(label="Open", command=open_fulfillment)
+file_menu.add_command(label="FAKE RAN", command=fake_ran_for_test)
 
 run_frame = Frame(window)
 run_frame.pack()
