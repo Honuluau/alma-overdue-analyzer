@@ -45,16 +45,3 @@ def get_last_update_time():
 
 def main():
     print("main lol")
-
-class API:
-    def __init__(self):
-        self.window = None
-
-        def change_text(self):
-            self.window.evaluate_js("document.getElementById('last_update').innerText = 'Last Update: Test'")
-
-
-api = API()
-file_path = os.path.abspath("web/index.html")
-api.window = webview.create_window("Alma Overdue Analyzer", file_path, width=700, height=400)
-webview.start()
