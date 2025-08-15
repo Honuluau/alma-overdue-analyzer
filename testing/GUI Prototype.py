@@ -5,6 +5,9 @@ import datetime
 def get_file_path():
     return askopenfilename(title="Select Fulfillment - Loans Returns and Overdue Dashboard", filetypes=[("Fulfillment Report", "*.xlsx")])
 
+def open_fulfillment():
+    file_path = get_file_path()
+
 def log(log_type, message):
     try:
         with open("log/log.txt", 'a+') as f:
@@ -37,8 +40,22 @@ def main():
     last_run_time = get_last_run_time()
     print(last_run_time)
 
-main()
-
 window = Tk()
+window.title("Alma Overdue Analyzer")
 
+menubar = Menu(window)
+window.config(menu=menubar)
+window.geometry("700x400")
+
+file_menu = Menu(menubar, tearoff=0)
+menubar.add_cascade(label="File", menu=file_menu)
+file_menu.add_command(label="Open", command=open_fulfillment)
+
+run_frame = Frame(window)
+run_frame.pack()
+
+run_time_label = Label(run_frame, justify=CENTER,text=f"Last RUN time: {get_last_run_time()}")
+run_time_label.pack()
+
+main()
 window.mainloop()
