@@ -16,16 +16,17 @@ def log(log_type, message):
     except Exception as e:
         print(f"An error has occurred: {e}")
 
-def fake_ran_for_test():
-    log("RAN", "This is fake for a test.")
+def fake_update_for_test():
+    log("UPDATE", "This is fake for a test.")
+    update_time_label.config(text=f"Last updated: {get_last_update_time()}")
 
-def get_last_run_time():
+def get_last_update_time():
     try:
         with open("log/log.txt") as f:
             lines = f.readlines()
             last_run_time = None
             for line in lines[::-1]:
-                if "RAN" in line:
+                if "UPDATE" in line:
                     last_run_time = line.split("]")[0].strip("[]")
                     break
 
@@ -41,8 +42,7 @@ def get_last_run_time():
         log("ERROR", f"Error code 1. {e}")
 
 def main():
-    last_run_time = get_last_run_time()
-    print(last_run_time)
+    print("main lol")
 
 window = Tk()
 window.title("Alma Overdue Analyzer")
@@ -54,13 +54,13 @@ window.geometry("700x400")
 file_menu = Menu(menubar, tearoff=0)
 menubar.add_cascade(label="File", menu=file_menu)
 file_menu.add_command(label="Open", command=open_fulfillment)
-file_menu.add_command(label="FAKE RAN", command=fake_ran_for_test)
+file_menu.add_command(label="FAKE UPDATE", command=fake_update_for_test)
 
-run_frame = Frame(window)
-run_frame.pack()
+update_frame = Frame(window)
+update_frame.pack()
 
-run_time_label = Label(run_frame, justify=CENTER,text=f"Last RUN time: {get_last_run_time()}")
-run_time_label.pack()
+update_time_label = Label(update_frame, justify=CENTER,text=f"Last updated: {get_last_update_time()}")
+update_time_label.pack()
 
 main()
 window.mainloop()
